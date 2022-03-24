@@ -28,8 +28,8 @@ function [gradOutput, gradOutputFT] = calculateOutputGradient(sigS1, sigS2, refS
     refS1 = repmat(refS1, [1,1,nRep]);
     refS2 = repmat(refS2, [1,1,nRep]);
 
-    sigS1Corrected = zeros(size(sigS1));
-    sigS2Corrected = zeros(size(sigS2));
+    sigS1Corrected = zeros(size(sigS1), 'single');
+    sigS2Corrected = zeros(size(sigS2), 'single');
 
     % Remember: We have ref scan before every three blip measurements
     % So nRefScan = floor((nGradAmp-1)/3)+1
@@ -47,9 +47,7 @@ function [gradOutput, gradOutputFT] = calculateOutputGradient(sigS1, sigS2, refS
 
     gradOutput = (sigS1Diff - sigS2Diff) / 2; % Phase averaged from two slices, in unit of rad/s
     gradOutput = gradOutput / (params.gammabar * 2*pi) / params.slicePos; % in unit of mT/m
-
-    % Average across dim of nCoil, now matrix size is [nRO, nGradAmp] (this has been done in data preprocessing)
-    % gradOutput = squeeze(mean(gradOutput,2)); 
+    gradOutput = single(gradOutput);
 
     gradOutputFT = fftshift(fft(fftshift(gradOutput,1),[],1),1);
 
