@@ -1,14 +1,14 @@
+function displayGIRFMagnitude(GIRF_FT, fullFreqRange, dispFreqRange, figNum)
+%Function for displaying GIRF calculation results
 % function displayGIRFMagnitude(GIRF_FT, fullFreqRange, dispFreqRange, figNum)
-% For displaying GIRF calculation results
 % Input arguments:
 %   GIRF_FT: GIRF in frequency domain, column vector.
 %   fullFreqRange: points covering full frequency range, column vector.
 %   dispFreqRange: min and max values of displaying frequency range, 1 × 2 vector. (optional)
 %   figNum: figure number. (optional)
 %    
-% Created by Tim Wu, March 10, 2022
-
-function displayGIRFMagnitude(GIRF_FT, fullFreqRange, dispFreqRange, figNum)
+% Author: Zhe "Tim" Wu
+% Created: March 10, 2022
 
     if nargin == 2
         dispFreqRange = [min(fullFreqRange), max(fullFreqRange)];

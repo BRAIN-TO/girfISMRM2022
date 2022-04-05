@@ -1,8 +1,8 @@
+function [gradOutput, gradOutputFT] = calculateOutputGradientOptimized(sigS1_POS, sigS1_NEG, sigS2_POS, sigS2_NEG, refS1, refS2, params)
+%Function calculating the actual output gradient waveforms for GIRF calculation using the dual polarity (optimized) method.
 % function [gradOutput, gradOutputFT] = calculateOutputGradientOptimized(sigS1_POS, sigS1_NEG, sigS2_POS, sigS2_NEG, refS1, refS2, params)
-% For calculating the actual output gradient waveforms,
-% which is subsequently used for calculating GIRF.
-% First perform temporal derivitive of the phase of raw T2* decay,
-% then subtracte phases from two slices.
+% First perform temporal derivitive of the phase of raw T2* decay, then subtracte phases from two slices.
+% 
 % Input arguments:
 %    sigS1 and sSigS2: raw T2* decays (with blips) from two symmetric slices
 %                           The suffix POS/NEG means the blip is applied in
@@ -16,9 +16,8 @@
 %    gradOutput: actual output gradients in time domain with the same size as inputs
 %    gradOutputFT: actual output gradients in frequency domain with the same size as inputs
 % 
-% Created by Tim Wu, March 10, 2022
-
-function [gradOutput, gradOutputFT] = calculateOutputGradientOptimized(sigS1_POS, sigS1_NEG, sigS2_POS, sigS2_NEG, refS1, refS2, params)
+% Author: Zhe "Tim" Wu
+% Created: March 10, 2022
 
     nGradAmp = size(sigS1_POS, 2); % Number of gradient blips
     nRep = size(sigS1_POS, 3); % Number of repetition

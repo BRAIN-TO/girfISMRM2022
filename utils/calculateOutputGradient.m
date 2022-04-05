@@ -1,8 +1,8 @@
-% function [gradOutput, gradOutputFT] = calculateOutputGradient(rawSigS1, rawSigS2)
-% For calculating the actual output gradient waveforms,
-% which is subsequently used for calculating GIRF.
-% First perform temporal derivitive of the phase of raw T2* decay,
-% then subtracte phases from two slices.
+function [gradOutput, gradOutputFT] = calculateOutputGradient(sigS1, sigS2, refS1, refS2, params)
+%Function for calculating the actual output gradient waveforms for GIRF calculation using the single polarity blips.
+% function [gradOutput, gradOutputFT] = calculateOutputGradient(sigS1, sigS2, refS1, refS2, params)
+% Algorithm: First perform temporal derivitive of the phase of raw T2* decay, then subtracte phases from two slices.
+% 
 % Input arguments:
 %    sigS1 and sSigS2: raw T2* decays (with blips) from two symmetric slices
 %                           in size of roPts × nGradAmplitudes × nRepetition
@@ -14,9 +14,8 @@
 %    gradOutput: actual output gradients in time domain with the same size as inputs
 %    gradOutputFT: actual output gradients in frequency domain with the same size as inputs
 % 
-% Created by Tim Wu, March 10, 2022
-
-function [gradOutput, gradOutputFT] = calculateOutputGradient(sigS1, sigS2, refS1, refS2, params)
+% Author: Zhe "Tim" Wu
+% Created: March 10, 2022
 
     nGradAmp = size(sigS1, 2); % Number of gradient blips
     nRep = size(sigS1, 3); % Number of repetition

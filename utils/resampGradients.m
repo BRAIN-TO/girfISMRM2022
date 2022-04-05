@@ -1,5 +1,7 @@
+function [gResamp, roTime] = resampGradients(gradIn, params)
+%Function for resampling input gradients into dwell time of ADC
 % function [gResamp, roTime] = resampGradients(gradIn, params)
-% For resampling input gradients into dwell time of ADC
+% 
 % Input arguments:
 %    gradIn: input gradients, in size of gradInNumber × gradAmplitudeNumbers
 %    params.gradRasterTime: scalar, in unit of us
@@ -10,9 +12,8 @@
 %    gResamp: resampled gradients, in size of adcSampNum × gradAmplitudeNumbers
 %    roTime: time for each resampled gradient, in size of adcSampNum × 1
 % 
-% Created by Tim Wu, March 10, 2022
-
-function [gResamp, roTime] = resampGradients(gradIn, params)
+% Author: Zhe "Tim" Wu
+% Created: March 10, 2022
 
     nGradSamples = size(gradIn, 1);
     gradTime = 0:(nGradSamples - 1);
