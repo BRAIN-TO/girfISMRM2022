@@ -1,12 +1,27 @@
 % Main script for calculating GIRF with phantom-based method from T2*
 
+%% User Settings: data path and gradient axis
+
+% Set the data path that stores subfolders 'meas1' and 'meas2'
+dataPath = '../DataISMRM2022';
+
+% Select which gradient axis for GIRF calculation
+% Select from 'X', 'Y', and 'Z' (case).
+gradientAxis = 'x';
+
+%% Check the validities of user inputs
+if ~strcmp(gradientAxis, 'X') && ~strcmp(gradientAxis, 'x') && ...
+        ~strcmp(gradientAxis, 'Y') && ~strcmp(gradientAxis, 'y') && ...
+        ~strcmp(gradientAxis, 'Z') && ~strcmp(gradientAxis, 'z')
+    error('Selected gradient axis must be X/x or Y/y or Z/z.');
+end
+
 %% Include path for utility functions
 addpath('./utils/');
 
-%% Read Measured Data
-
+%% Setting data path and file names according to user selections
 % Only the 2nd measurement contains the optimized protocol of GIRF.
-dataPath = '../DataISMRM2022/Meas2/';
+fullDataPath = strcat(dataPath, '/Meas2/');
 
 % We need four files for each gradient axis,
 % incuding raw T2* decay signal files and ref scans for both slices.
@@ -15,40 +30,48 @@ dataPath = '../DataISMRM2022/Meas2/';
 % For Gz axis, use files with H and F as slice 1 and 2, respectively.
 % Slices are all in 1mm thickness and 34 mm slice gap. ADC dwell time 5us.
 
-% % Slice Pair 1: Sagittal slices (Along X) 
-% fn_Slice1_POS = 'PosSignalSagL17.mat';
-% fn_Slice1_NEG = 'NegSignalSagL17.mat';
-% fn_Slice2_POS = 'PosSignalSagR17.mat';
-% fn_Slice2_NEG = 'NegSignalSagR17.mat';
-% fn_Slice1_ref = 'RefSagL17.mat';
-% fn_Slice2_ref = 'RefSagR17.mat';
+switch gradientAxis
+    % Slice Pair 1: For Gx GIRF, we need two slices along the sagittal plane.
+    case {'X', 'x'}
+        fn_Slice1_POS = 'PositiveSagL17.mat';
+        fn_Slice1_NEG = 'NegativeSagL17.mat';
+        fn_Slice2_POS = 'PositiveSagR17.mat';
+        fn_Slice2_NEG = 'NegativeSagR17.mat';
+        fn_Slice1_ref = 'RefSagL17.mat';
+        fn_Slice2_ref = 'RefSagR17.mat';
+    
+    % Slice Pair 2: For Gy GIRF, we need two slices along the coronal plane.
+    case {'Y', 'y'}
+        fn_Slice1_POS = 'PositiveCorP17.mat';
+        fn_Slice1_NEG = 'NegativeCorP17.mat';
+        fn_Slice2_POS = 'PositiveCorA17.mat';
+        fn_Slice2_NEG = 'NegativeCorA17.mat';
+        fn_Slice1_ref = 'RefCorP17.mat';
+        fn_Slice2_ref = 'RefCorA17.mat';
 
-% Slice Pair 2: Coronal slices (Along Y)
-fn_Slice1_POS = 'PosSignalCorP17.mat';
-fn_Slice1_NEG = 'NegSignalCorP17.mat';
-fn_Slice2_POS = 'PosSignalCorA17.mat';
-fn_Slice2_NEG = 'NegSignalCorA17.mat';
-fn_Slice1_ref = 'RefCorP17.mat';
-fn_Slice2_ref = 'RefCorA17.mat';
-
-% % Slice Pair 3: Transverse slices (Along Z)
-% fn_Slice1_POS = 'PosSignalTraH17.mat';
-% fn_Slice1_NEG = 'NegSignalTraH17.mat';
-% fn_Slice2_POS = 'PosSignalTraF17.mat';
-% fn_Slice2_NEG = 'NegSignalTraF17.mat';
-% fn_Slice1_ref = 'RefTraH17.mat';
-% fn_Slice2_ref = 'RefTraF17.mat';
+    % Slice Pair 3: For Gz GIRF, we need two slices along the transversal plane.
+    case {'Z', 'z'}
+        fn_Slice1_POS = 'PositiveTraH17.mat';
+        fn_Slice1_NEG = 'NegativeTraH17.mat';
+        fn_Slice2_POS = 'PositiveTraF17.mat';
+        fn_Slice2_NEG = 'NegativeTraF17.mat';
+        fn_Slice1_ref = 'RefTraH17.mat';
+        fn_Slice2_ref = 'RefTraF17.mat';
+        
+    otherwise
+        error('Selected gradient axis must be X/x or Y/y or Z/z.');
+end
 
 % File containing all gradient waveforms (blips)
-fn_gradient = 'gradients_zerofilled.mat';
+fn_gradient = 'InputGradients.mat';
 
-fn_Slice1_POS = strcat(dataPath, fn_Slice1_POS);
-fn_Slice1_NEG = strcat(dataPath, fn_Slice1_NEG);
-fn_Slice2_POS = strcat(dataPath, fn_Slice2_POS);
-fn_Slice2_NEG = strcat(dataPath, fn_Slice2_NEG);
-fn_Slice1_ref = strcat(dataPath, fn_Slice1_ref);
-fn_Slice2_ref = strcat(dataPath, fn_Slice2_ref);
-fn_gradient = strcat(dataPath, fn_gradient);
+fn_Slice1_POS = strcat(fullDataPath, fn_Slice1_POS);
+fn_Slice1_NEG = strcat(fullDataPath, fn_Slice1_NEG);
+fn_Slice2_POS = strcat(fullDataPath, fn_Slice2_POS);
+fn_Slice2_NEG = strcat(fullDataPath, fn_Slice2_NEG);
+fn_Slice1_ref = strcat(fullDataPath, fn_Slice1_ref);
+fn_Slice2_ref = strcat(fullDataPath, fn_Slice2_ref);
+fn_gradient = strcat(fullDataPath, fn_gradient);
 
 %% Fixed parameters
 params = [];
@@ -59,14 +82,14 @@ params.adcDwellTime = 5; % in us
 
 %% Start Data processing
 
-%% Load all necessary files
+%% Step 1: Load all necessary files
 
-% Load T2* decay signal
-[rawSigS1_POS, rawSigS1_NEG, rawSigS2_POS, rawSigS2_NEG, refS1, refS2] = readMultiFiles(fn_Slice1_POS, fn_Slice1_NEG, fn_Slice2_POS, fn_Slice2_NEG, fn_Slice1_ref, fn_Slice2_ref);
+% Load T2* decay signal. The variable name in each MAT file is called 'kspace_all'
+[rawSigS1_POS, rawSigS1_NEG, rawSigS2_POS, rawSigS2_NEG, refS1, refS2] = readMultiFiles('kspace_all', fn_Slice1_POS, fn_Slice1_NEG, fn_Slice2_POS, fn_Slice2_NEG, fn_Slice1_ref, fn_Slice2_ref);
 % Load all gradient blips, includes gradIn_all
 load(fn_gradient, 'gradIn_all'); 
 
-%% Processing gradient inputs
+%% Step 2: Processing gradient inputs
 params.roPts = size(rawSigS1_POS, 1); % Readout points
 params.nRep = size(rawSigS1_POS, 2); % Number of repetition
 params.nGradAmp = size(rawSigS1_POS, 3); % Number of gradient blips
@@ -83,7 +106,7 @@ gradInputFT = fftshift(fft(fftshift(gradInput,1),[],1),1); % [nRO, nGradAmp]
 gradInputFT = repmat(gradInputFT, [1,1,params.nRep]);
 
 
-%% Calculate Output Gradients and GIRF
+%% Step 3: Calculate Output Gradients and GIRF
 
 % Change dimention from [nRO, nRep, nGradAmp] to [nRO, nGradAmp, nRep]
 rawSigS1_POS = permute(rawSigS1_POS, [1, 3, 2]); % [nRO, nGradAmp, nRep]
@@ -102,7 +125,7 @@ refS2 = squeeze(mean(refS2,2));
 GIRF_FT = sum(gradOutputFT .* conj(gradInputFT), 2) ./ sum(abs(gradInputFT).^2, 2);
 GIRF_FT = squeeze(GIRF_FT);
 
-%% Plot GIRF in Frequency Domain
+%% Step 4: Plot GIRF in Frequency Domain
 
 % Calculate full frequency range of the GIRF spectrum
 freqRange = 1 / (params.adcDwellTime / 1e6) / 1e3; % Full spectrum width, in unit of kHz
