@@ -7,7 +7,7 @@ dataPath = '../DataISMRM2022';
 
 % Select which gradient axis for GIRF calculation
 % Select from 'X', 'Y', and 'Z' (case).
-gradientAxis = 'z';
+gradientAxis = 'x';
 
 %% Check the validities of user inputs
 if ~strcmp(gradientAxis, 'X') && ~strcmp(gradientAxis, 'x') && ...

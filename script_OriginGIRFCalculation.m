@@ -10,7 +10,7 @@ dataSavePath = '../DataISMRM2022/Results/';
 
 % We have two measurements for stability investigations with a 8-month gap
 % Select from 1 and 2.
-measNum = 2;
+measNum = 1;
 
 % Select which gradient axis for GIRF calculation
 % Select from 'X', 'Y', and 'Z'.
