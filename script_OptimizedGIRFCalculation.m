@@ -7,7 +7,7 @@ dataPath = '../DataISMRM2022';
 
 % Select which gradient axis for GIRF calculation
 % Select from 'X', 'Y', and 'Z' (case).
-gradientAxis = 'x';
+gradientAxis = 'z';
 
 %% Check the validities of user inputs
 if ~strcmp(gradientAxis, 'X') && ~strcmp(gradientAxis, 'x') && ...
@@ -15,6 +15,8 @@ if ~strcmp(gradientAxis, 'X') && ~strcmp(gradientAxis, 'x') && ...
         ~strcmp(gradientAxis, 'Z') && ~strcmp(gradientAxis, 'z')
     error('Selected gradient axis must be X/x or Y/y or Z/z.');
 end
+
+gradientAxis = lower(gradientAxis);
 
 %% Include path for utility functions
 addpath('./utils/');
@@ -135,3 +137,10 @@ freqFull = freqFull(:);
 dispFreqRange = [-30, 30]; % in unit of kHz
 
 displayGIRFMagnitude(GIRF_FT, freqFull, dispFreqRange, 555);
+
+%% Step 5: Save Results
+if exist(dataSavePath, 'file') ~= 7
+    mkdir(dataSavePath);
+end
+
+save(strcat(dataSavePath, 'GIRFOptimized_G', gradientAxis, '_Meas2'), 'GIRF_FT', 'params', 'roTime');

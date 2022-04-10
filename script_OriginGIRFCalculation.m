@@ -5,12 +5,15 @@
 % Set the data path that stores subfolders 'meas1' and 'meas2'
 dataPath = '../DataISMRM2022';
 
+% Set the path for saving GIRF results
+dataSavePath = '../DataISMRM2022/Results/';
+
 % We have two measurements for stability investigations with a 8-month gap
 % Select from 1 and 2.
-measNum = 1;
+measNum = 2;
 
 % Select which gradient axis for GIRF calculation
-% Select from 'X', 'Y', and 'Z' (case).
+% Select from 'X', 'Y', and 'Z'.
 gradientAxis = 'x';
 
 %% Check the validities of user inputs
@@ -23,6 +26,8 @@ if ~strcmp(gradientAxis, 'X') && ~strcmp(gradientAxis, 'x') && ...
         ~strcmp(gradientAxis, 'Z') && ~strcmp(gradientAxis, 'z')
     error('Selected gradient axis must be X/x or Y/y or Z/z.');
 end
+
+gradientAxis = lower(gradientAxis);
 
 %% Include path for utility functions
 addpath('./utils/');
@@ -122,7 +127,7 @@ refS2 = squeeze(mean(refS2,2));
 GIRF_FT = sum(gradOutputFT .* conj(gradInputFT), 2) ./ sum(abs(gradInputFT).^2, 2);
 GIRF_FT = squeeze(GIRF_FT);
 
-%% Step 4? Plot GIRF in Frequency Domain
+%% Step 4: Plot GIRF in Frequency Domain
 
 % Calculate full frequency range of the GIRF spectrum
 freqRange = 1 / (params.adcDwellTime / 1e6) / 1e3; % Full spectrum width, in unit of kHz
@@ -132,3 +137,10 @@ freqFull = freqFull(:);
 dispFreqRange = [-30, 30]; % in unit of kHz
 
 displayGIRFMagnitude(GIRF_FT, freqFull, dispFreqRange, 555);
+
+%% Step 5: Save Results
+if exist(dataSavePath, 'file') ~= 7
+    mkdir(dataSavePath);
+end
+
+save(strcat(dataSavePath, 'GIRFOrigin_G', gradientAxis, '_Meas', num2str(measNum)), 'GIRF_FT', 'params', 'roTime');
