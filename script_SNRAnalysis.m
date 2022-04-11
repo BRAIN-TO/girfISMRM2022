@@ -1,7 +1,8 @@
-%% SNR analysis
+%% Script for GIRF SNR analysis
 %To analyze the SNR difference for two methods - single polarity (original) and dual
 %polarities (optimized) GIRF calculation.
 
+%% User defined parameters
 % Select which gradient axis for GIRF calculation
 % Select from 'X', 'Y', and 'Z'.
 gradientAxis = 'x';
@@ -15,15 +16,8 @@ gradientAxis = lower(gradientAxis);
 resultFileName1 = strcat('GIRFOrigin_G', gradientAxis, '_Meas2.mat');
 resultFileName2 = strcat('GIRFOptimized_G', gradientAxis, '_Meas2.mat');
 
-% resultFileName1 = "2021Jun_Gx.mat";
-% resultFileName2 = "2021Jun_PosNeg_Gx.mat";
-% resultFileName1 = "2021Jun_Gy.mat";
-% resultFileName2 = "2021Jun_PosNeg_Gy.mat";
-% resultFileName1 = "2021Jun_Gz.mat";
-% resultFileName2 = "2021Jun_PosNeg_Gz.mat";
-
 % This will load the following variables:
-% GIRF_FT, b0ec_FT (if have), dwellTimeSig, isAvgRepetition, roPts, roTime
+% GIRF_FT, dwellTimeSig, isAvgRepetition, roPts, roTime
 load(strcat(resultPath, resultFileName1));
 GIRF_FT1 = GIRF_FT; clear GIRF_FT;
 load(strcat(resultPath, resultFileName2));
@@ -55,10 +49,8 @@ dispFreqRange = [-30, 30]; % in unit of kHz
 
 figure(111);
 set(gcf,'color','white');
-% plot(freq, SNR1, 'b', 'LineWidth', 1);
 plot(freq, SNRSmooth1, 'r', 'LineWidth', 1);
 hold on;
-% plot(freq, SNR2, 'r', 'LineWidth', 1);
 plot(freq, SNRSmooth2, 'k', 'LineWidth', 1);
 hold on;
 xlim(dispFreqRange);
@@ -74,9 +66,6 @@ xlim(dispFreqRange);
 xlabel('Frequency [kHz]','FontSize', 14); ylabel('SNR [AU]','FontSize', 14);
 title('SNR of GIRF in Frequency Domain','FontSize', 18);
 hold off;
-
-% figure(113);
-% powerbw(fftshift(fft(fftshift(SNRSmooth1,1),[],1),1), 1e6/5/(10/3));
 
 % Mean of SNR ratio between display range
 % Noisy part < -30 kHz or > 30 kHz was removed
