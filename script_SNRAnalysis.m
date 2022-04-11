@@ -1,6 +1,9 @@
-%% Script for GIRF SNR analysis, generating subfigures on the second row of Figure 4
-%To analyze the SNR difference for two methods - single polarity (original) and dual
-%polarities (optimized) GIRF calculation.
+% script_SNRAnalysis.m
+%Script for GIRF SNR analysis, generating subfigures on the second row of Figure 4
+% To analyze the SNR difference for two methods - single polarity (original) and dual
+% polarities (optimized) GIRF calculation.
+% Author: Zhe "Tim" Wu
+% Created: Nov. 1, 2021
 
 %% User defined parameters
 % Select which gradient axis for GIRF calculation
