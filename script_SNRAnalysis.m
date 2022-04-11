@@ -1,4 +1,4 @@
-%% Script for GIRF SNR analysis
+%% Script for GIRF SNR analysis, generating subfigures on the second row of Figure 4
 %To analyze the SNR difference for two methods - single polarity (original) and dual
 %polarities (optimized) GIRF calculation.
 
