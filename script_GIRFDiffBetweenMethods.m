@@ -7,10 +7,17 @@
 %% User defined parameters
 % Select which gradient axis for GIRF calculation
 % Select from 'X', 'Y', and 'Z'.
-gradientAxis = 'z';
+if exist('gradientAxis', 'var') ~= 1
+    gradientAxis = 'z';
+end
+
+% Set the data path that stores subfolders 'CalculatedGIRF'
+if exist('dataPath', 'var') ~= 1
+    dataPath = '../DataISMRM2022';
+end
 
 % Path to load the pre-calculated GIRF
-resultPath = "../DataISMRM2022/CalculatedGIRF/";
+preCalcGIRFPath = strcat(dataPath, '/CalculatedGIRF/');
 
 %% File name and path
 gradientAxis = lower(gradientAxis);
@@ -20,9 +27,9 @@ resultFileName2 = strcat('GIRFOptimized_G', gradientAxis, '_Meas2.mat');
 
 % This will load the following variables:
 % GIRF_FT, dwellTimeSig, isAvgRepetition, roPts, roTime
-load(strcat(resultPath, resultFileName1));
+load(strcat(preCalcGIRFPath, resultFileName1));
 GIRF_FT1 = GIRF_FT; clear GIRF_FT;
-load(strcat(resultPath, resultFileName2));
+load(strcat(preCalcGIRFPath, resultFileName2));
 GIRF_FT2 = GIRF_FT; clear GIRF_FT;
 
 %% Calculation
@@ -47,7 +54,7 @@ freq2 = 14.6;
 [~,indexRight2] = min(abs(freq - freq2));
 
 %% Plot the difference of GIRF
-figure(333);
+figure(444);
 clf;
 set(gcf,'color','white');
 plot(freq, abs(GIRF_FT_mean1), 'r', 'LineWidth', 2);

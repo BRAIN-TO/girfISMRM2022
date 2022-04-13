@@ -8,10 +8,17 @@
 %% User defined parameters
 % Select which gradient axis for GIRF calculation
 % Select from 'X', 'Y', and 'Z'.
-gradientAxis = 'x';
+if exist('gradientAxis', 'var') ~= 1
+    gradientAxis = 'x';
+end
+
+% Set the data path that stores subfolders 'CalculatedGIRF'
+if exist('dataPath', 'var') ~= 1
+    dataPath = '../DataISMRM2022';
+end
 
 % Path to load the pre-calculated GIRF
-resultPath = "../DataISMRM2022/CalculatedGIRF/";
+preCalcGIRFPath = strcat(dataPath, '/CalculatedGIRF/');
 
 %% File name and path
 gradientAxis = lower(gradientAxis);
@@ -21,9 +28,9 @@ resultFileName2 = strcat('GIRFOptimized_G', gradientAxis, '_Meas2.mat');
 
 % This will load the following variables:
 % GIRF_FT, dwellTimeSig, isAvgRepetition, roPts, roTime
-load(strcat(resultPath, resultFileName1));
+load(strcat(preCalcGIRFPath, resultFileName1));
 GIRF_FT1 = GIRF_FT; clear GIRF_FT;
-load(strcat(resultPath, resultFileName2));
+load(strcat(preCalcGIRFPath, resultFileName2));
 GIRF_FT2 = GIRF_FT; clear GIRF_FT;
 
 %% SNR Calculation
@@ -50,7 +57,7 @@ freq = freq(:);
 
 dispFreqRange = [-30, 30]; % in unit of kHz
 
-figure(111);
+figure(555);
 set(gcf,'color','white');
 plot(freq, SNRSmooth1, 'r', 'LineWidth', 1);
 hold on;
@@ -61,14 +68,6 @@ xlabel('Frequency [kHz]','FontSize', 14); ylabel('SNR [AU]','FontSize', 14);
 title('SNR of GIRF in Frequency Domain','FontSize', 18);
 hold off;
 legend('Origin', 'Optimized', 'FontSize', 14);
-
-figure(112);
-set(gcf,'color','white');
-plot(freq, SNRSmooth2./SNRSmooth1, 'b', 'LineWidth', 1);
-xlim(dispFreqRange);
-xlabel('Frequency [kHz]','FontSize', 14); ylabel('SNR [AU]','FontSize', 14);
-title('SNR of GIRF in Frequency Domain','FontSize', 18);
-hold off;
 
 % Mean of SNR ratio between display range
 % Noisy part < -30 kHz or > 30 kHz was removed

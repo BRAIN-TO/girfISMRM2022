@@ -1,20 +1,31 @@
-% Main script for calculating GIRF with phantom-based method from T2*
+% script_OriginGIRFCalculation.m
+%Script for calculate GIRF with phantom-based method from T2* using original method (positive triangle blips only)
+% This script is using the coil-averaged data for demonstration purpose ONLY.
+% Please use the pre-calculated GIRF from the non-compressed 
+% Author: Zhe "Tim" Wu
+% Created: Nov 1, 2021
 
 %% User Settings: data path and gradient axis
 
 % Set the data path that stores subfolders 'meas1' and 'meas2'
-dataPath = '../DataISMRM2022';
+if exist('dataPath', 'var') ~= 1
+    dataPath = '../DataISMRM2022';
+end
 
 % Set the path for saving GIRF results
-dataSavePath = '../DataISMRM2022/Results/';
+dataSavePath = strcat(dataPath, '/Results/');
 
 % We have two measurements for stability investigations with a 8-month gap
 % Select from 1 and 2.
-measNum = 1;
+if exist('measNum', 'var') ~= 1
+    measNum = 1;
+end
 
 % Select which gradient axis for GIRF calculation
 % Select from 'X', 'Y', and 'Z'.
-gradientAxis = 'x';
+if exist('gradientAxis', 'var') ~= 1
+    gradientAxis = 'x';
+end
 
 %% Check the validities of user inputs
 if measNum ~= 1 && measNum ~= 2
@@ -136,7 +147,7 @@ freqFull = freqFull(:);
 
 dispFreqRange = [-30, 30]; % in unit of kHz
 
-displayGIRFMagnitude(GIRF_FT, freqFull, dispFreqRange, 555);
+displayGIRFMagnitude(GIRF_FT, freqFull, dispFreqRange, 111);
 
 %% Step 5: Save Results
 if exist(dataSavePath, 'file') ~= 7

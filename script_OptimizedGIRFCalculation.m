@@ -1,13 +1,25 @@
-% Main script for calculating GIRF with phantom-based method from T2*
+% script_OriginGIRFCalculation.m
+%Script for calculate GIRF with phantom-based method from T2* using the optimized method (using both positive and negative blips)
+% This script is using the coil-averaged data for demonstration purpose ONLY.
+% Please use the pre-calculated GIRF from the non-compressed 
+% Author: Zhe "Tim" Wu
+% Created: Nov 1, 2021
 
 %% User Settings: data path and gradient axis
 
 % Set the data path that stores subfolders 'meas1' and 'meas2'
-dataPath = '../DataISMRM2022';
+if exist('dataPath', 'var') ~= 1
+    dataPath = '../DataISMRM2022';
+end
+
+% Set the path for saving GIRF results
+dataSavePath = strcat(dataPath, '/Results/');
 
 % Select which gradient axis for GIRF calculation
-% Select from 'X', 'Y', and 'Z' (case).
-gradientAxis = 'x';
+% Select from 'X', 'Y', and 'Z'.
+if exist('gradientAxis', 'var') ~= 1
+    gradientAxis = 'x';
+end
 
 %% Check the validities of user inputs
 if ~strcmp(gradientAxis, 'X') && ~strcmp(gradientAxis, 'x') && ...
@@ -136,7 +148,7 @@ freqFull = freqFull(:);
 
 dispFreqRange = [-30, 30]; % in unit of kHz
 
-displayGIRFMagnitude(GIRF_FT, freqFull, dispFreqRange, 555);
+displayGIRFMagnitude(GIRF_FT, freqFull, dispFreqRange, 222);
 
 %% Step 5: Save Results
 if exist(dataSavePath, 'file') ~= 7
