@@ -53,7 +53,7 @@ function displayGIRFMagnitude(GIRF_FT, fullFreqRange, dispFreqRange, figNum)
     
     p1 = polyfit(fitX, fitY, 1);
     temporalDelay1 = p1(1)/1e3/(2*pi) * 1e6; % in unit of us
-    disp(['Delay:', num2str(temporalDelay1), ' us']);
+    disp(['Gradient Delay is ', num2str(temporalDelay1), ' us']);
 
     % Display phase (mean only)
     subplot(212);
