@@ -7,8 +7,8 @@ This is the demonstration code of the abstract *MR Gradient System Long-Term Sta
 > <zhe.wu@rmp.uhn.ca>  
 >  
 > Brain Research in Advanced Imaging and Neuromodeling - Toronto (BRAIN-TO) Lab  
-> Techna Institute
-> University Health Network
+> Techna Institute  
+> University Health Network  
 
 ## Quick Start
 
