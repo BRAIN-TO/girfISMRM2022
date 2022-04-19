@@ -1,6 +1,6 @@
 # Demonstration Code for Gradient Impulse Response Function (GIRF) Calculation and Analysis
 
-This is the demonstration code of the abstract *MR Gradient System Long-Term Stability Investigation and Protocol Optimization for Quality Control using Gradient Impulse Response Function (GIRF)*`* for the Joint Annual Meeting ISMRM-ESMRMB & ISMRT 31st Annual Meeting, which will be held in London UK, between May 7 - 12, 2022. The program number and the link will be added once it is announced.
+This is the demonstration code of the abstract *MR Gradient System Long-Term Stability Investigation and Protocol Optimization for Quality Control using Gradient Impulse Response Function (GIRF)* for the Joint Annual Meeting ISMRM-ESMRMB & ISMRT 31st Annual Meeting, which will be held in London UK, between May 7 - 12, 2022. The program number and the link will be added once it is announced.
 
 > Copyright (C) 2021-2022  
 > Zhe "Tim" Wu  
@@ -12,9 +12,9 @@ This is the demonstration code of the abstract *MR Gradient System Long-Term Sta
 
 ## Quick Start
 
-1. Download the demonstration data from [here](https://www.doi.org/10.5281/zenodo.6376737) and extract them under the same folder. See details of the description of each file in the section [Dataset for Demonstration](#dataset-for-demonstration);
+1. Download the demonstration data from [here](https://www.doi.org/10.5281/zenodo.6376737) and extract them under the same folder. See details of the description of each file in the section [Dataset for Demonstration](#dataset-for-demonstration).
 
-2. In the `main.m` file, change the variables under the section "Set User Parameters". Set the variable `dataPath` as the path that stores all the downloaded data; set the variable `gradientAxis` to the gradient axis that needs to be analysed (choose from 'X', 'Y', and 'Z', **case insensitive**); set the variable `measNum` to the measurement dataset to be analysed (only applicable to `script_OriginGIRFCalculation.m`, see the following section [Script List](#script-list) and the instructions inside this script for details.)
+2. In the `main.m` file, change the variables under the section "Set User Parameters". Set the variable `dataPath` as the path that stores all the downloaded data; set the variable `gradientAxis` to the gradient axis that needs to be analysed (choose from 'X', 'Y', and 'Z', **case insensitive**); set the variable `measNum` to the measurement dataset to be analysed (only applicable to `script_OriginGIRFCalculation.m`, see the following section [Script List](#script-list) and the instructions inside this script for details).
 
 3. Run the `main.m` file and all the demo scripts should be executed. You may change the variable `gradientAxis` to check the other gradient axis. 
 
@@ -26,9 +26,9 @@ The demonstration data contains three parts:
 
 1. `Meas1.zip` contains raw T2* decay signal acquired only with the positive triangle blips using phantom-based method (See Figure 1 in the abstract).
 
-2. `Meas2.zip` contains raw T2* decay signal acquired with both positive and negative triangle blips using phantom-based method （See Figure 1 in the abstract）. This data was acquired 8 months after the acquisition of `Meas1.zip`.
+2. `Meas2.zip` contains raw T2* decay signal acquired with both positive and negative triangle blips using phantom-based method（See Figure 1 in the abstract). This data was acquired 8 months after the acquisition of `Meas1.zip`.
 
-3. `CalculatedGIRF.zip` provides the author's pre-calculated GIRFs using the data without coil averaging. This data is used for all the postprocessing (e.g. SNR and stability analysis, comparison between original and optimized GIRF methods, etc.) in the published abstract with the source code provided in the same Github repository.
+3. `CalculatedGIRF.zip` provides the author's pre-calculated GIRFs using the data without coil averaging. This data is used for all the postprocessing (e.g., SNR and stability analysis, comparison between original and optimized GIRF methods, etc.) in the published abstract with the source code provided in the same Github repository.
 
 Please note that the raw T2* decay signal in `Meas1.zip` and `Meas2.zip` is only for the purpose of demonstrating GIRF calculations (using blips with single polarity and dual polarities) - they are NOT used in the analysis in the abstract. The reason is that we averaged across the coil dimension of raw to save data volume for demonstration purposes, which leads a reduced SNR of the calculated output gradients and GIRFs. For the analysis of GIRF (SNR, stability, etc.) we use the pre-calculated GIRFs in `CalculatedGIRF.zip`.
 
