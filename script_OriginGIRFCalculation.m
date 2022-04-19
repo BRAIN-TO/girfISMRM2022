@@ -1,9 +1,16 @@
 % script_OriginGIRFCalculation.m
-%Script for calculate GIRF with phantom-based method from T2* using original method (positive triangle blips only)
+% Script for calculate GIRF with phantom-based method from T2* using original method (positive triangle blips only)
 % This script is using the coil-averaged data for demonstration purpose ONLY.
 % Please use the pre-calculated GIRF from the non-compressed 
+
 % Author: Zhe "Tim" Wu
 % Created: Nov 1, 2021
+%
+%    Copyright (C) 2021-2022
+%    Brain Research in Advanced Imaging and Neuromodeling - Toronto (BRAIN-TO) Lab
+%    Techna Institute
+%    University Health Network
+%    Please see LICENSE file for details on usage
 
 %% User Settings: data path and gradient axis
 
