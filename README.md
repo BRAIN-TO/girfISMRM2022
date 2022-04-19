@@ -6,7 +6,7 @@ This is the demonstration code of the abstract *MR Gradient System Long-Term Sta
 > Zhe "Tim" Wu  
 > <zhe.wu@rmp.uhn.ca>  
 >  
-> Brain Research in Advanced Imaging and Neuromodeling - Toronto (BRAIN-TO) Lab
+> Brain Research in Advanced Imaging and Neuromodeling - Toronto (BRAIN-TO) Lab  
 > Techna Institute
 > University Health Network
 
