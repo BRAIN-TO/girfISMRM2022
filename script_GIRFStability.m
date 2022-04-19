@@ -1,11 +1,18 @@
 % script_GIRFStability.m
-%Script for GIRF stability analysis
+% Script for GIRF stability analysis
 % This script generates Figure 3 (C-E)
 % The relative difference of two measurements is based on the frequency
 % ranges with 99% energy concentration for spiral and EPI trajectories. See
 % Figure 3 (A-B)
+
 % Author: Zhe "Tim" Wu
 % Created: Nov 1, 2021
+%
+%    Copyright (C) 2021-2022
+%    Brain Research in Advanced Imaging and Neuromodeling - Toronto (BRAIN-TO) Lab
+%    Techna Institute
+%    University Health Network
+%    Please see LICENSE file for details on usage
 
 %% User defined parameters
 % Select which gradient axis for GIRF calculation
@@ -82,5 +89,5 @@ girfRelDiff = abs(GIRF_FT_mean1 - GIRF_FT_mean2) ./ GIRF_FT_mean1;
 girfRelDiffFreq1 = max(girfRelDiff(indexLeft1:indexRight1));
 girfRelDiffFreq2 = max(girfRelDiff(indexLeft2:indexRight2));
 
-disp(['The max relative difference of GIRF on G', gradientAxis, ' in the frequency range of ±', num2str(freq1), 'kHz is ', num2str(girfRelDiffFreq1 * 100), '%']);
-disp(['The max relative difference of GIRF on G', gradientAxis, ' in the frequency range of ±', num2str(freq2), 'kHz is ', num2str(girfRelDiffFreq2 * 100), '%']);
+disp(['The max relative difference of GIRF on G', gradientAxis, ' in the frequency range of Â±', num2str(freq1), 'kHz is ', num2str(girfRelDiffFreq1 * 100), '%']);
+disp(['The max relative difference of GIRF on G', gradientAxis, ' in the frequency range of Â±', num2str(freq2), 'kHz is ', num2str(girfRelDiffFreq2 * 100), '%']);
