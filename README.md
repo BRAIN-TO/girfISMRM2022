@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/424335964.svg)](https://zenodo.org/badge/latestdoi/424335964)
+
 # Demonstration Code for Gradient Impulse Response Function (GIRF) Calculation and Analysis
 
 This is the demonstration code of the abstract *MR Gradient System Long-Term Stability Investigation and Protocol Optimization for Quality Control using Gradient Impulse Response Function (GIRF)* for the Joint Annual Meeting ISMRM-ESMRMB & ISMRT 31st Annual Meeting, which will be held in London UK, between May 7 - 12, 2022. The program number and the link will be added once it is announced.
