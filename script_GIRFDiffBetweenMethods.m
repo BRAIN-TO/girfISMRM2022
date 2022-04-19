@@ -1,8 +1,15 @@
 % script_GIRFDiffBetweenMethods.m
-%Script comparing calculated GIRF with the original (positive blip polarity) and optimized (dual blip polarity) methods.
+% Script comparing calculated GIRF with the original (positive blip polarity) and optimized (dual blip polarity) methods.
 % This script generates subfigures on the first row in Figure 4
+
 % Author: Zhe "Tim" Wu
 % Created: Nov 1, 2021
+%
+%    Copyright (C) 2021-2022
+%    Brain Research in Advanced Imaging and Neuromodeling - Toronto (BRAIN-TO) Lab
+%    Techna Institute
+%    University Health Network
+%    Please see LICENSE file for details on usage
 
 %% User defined parameters
 % Select which gradient axis for GIRF calculation
