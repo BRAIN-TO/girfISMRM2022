@@ -44,7 +44,7 @@ Please note that the raw T2* decay signal in `Meas1.zip` and `Meas2.zip` is only
 
 5. `script_GIRFDiffBetweenMethods.m` compares the GIRF results from two calculation methods (Figure 4 first row).
 
-6. `script_SNRAnalysis.m` analyses the SNR level of the GIRF results from two calculation methods (Figure 4 first row).
+6. `script_SNRAnalysis.m` analyses the SNR level of the GIRF results from two calculation methods (Figure 4 second row).
 
 ## Execution Efficiency and Required Resources
 
