@@ -1,11 +1,19 @@
 % script_SNRAnalysis.m
-%Script for GIRF SNR analysis, generating subfigures on the second row of Figure 4
+% Script for GIRF SNR analysis, generating subfigures on the second row of Figure 4
 % To analyze the SNR difference for two methods - single polarity (original) and dual
 % polarities (optimized) GIRF calculation.
+
 % Author: Zhe "Tim" Wu
 % Created: Nov. 1, 2021
+%
+%    Copyright (C) 2021-2022
+%    Brain Research in Advanced Imaging and Neuromodeling - Toronto (BRAIN-TO) Lab
+%    Techna Institute
+%    University Health Network
+%    Please see LICENSE file for details on usage
 
 %% User defined parameters
+
 % Select which gradient axis for GIRF calculation
 % Select from 'X', 'Y', and 'Z'.
 if exist('gradientAxis', 'var') ~= 1
