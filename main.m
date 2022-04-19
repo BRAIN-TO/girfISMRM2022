@@ -1,7 +1,14 @@
 % Script main.m
-%Run all the demonstration scripts
+% Run all the demonstration scripts for Gradient Impulse Response Function (GIRF) calculation and analysis (stability, SNR...)
+
 % Author: Zhe "Tim" Wu
 % Created: Apr 10, 2022
+%
+%    Copyright (C) 2021-2022
+%    Brain Research in Advanced Imaging and Neuromodeling - Toronto (BRAIN-TO) Lab
+%    Techna Institute
+%    University Health Network
+%    Please see LICENSE file for details on usage
 
 %% Set User Parameters
 clear;
