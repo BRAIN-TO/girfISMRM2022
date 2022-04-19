@@ -52,23 +52,23 @@ All the figures of the abstract are in the folder `figures/`.
 
 ![](figures/Figure1.png)
 
-Figure 1 (A) Slice positions, in which only two out of three directions were indicated. (B) Reference scans were inserted between acquisition of every two blip amplitudes. (C) Measurements for long-term stability and protocol optimization studies.
+**Figure 1** (A) Slice positions, in which only two out of three directions were indicated. (B) Reference scans were inserted between acquisition of every two blip amplitudes. (C) Measurements for long-term stability and protocol optimization studies.
 
 ![](figures/Figure2.png)
 
-Figure 2 Magnitude & phase for GIRF in frequency domain for both measurements for all three gradient axis. The blue curves indicate the mean of 50 repetitions, and the orange shadows in magnitude part of the frequency domain GIRF indicate the standard deviation of the noise. Gradient delays were estimated by fitting the phase ramp.
+**Figure 2** Magnitude & phase for GIRF in frequency domain for both measurements for all three gradient axis. The blue curves indicate the mean of 50 repetitions, and the orange shadows in magnitude part of the frequency domain GIRF indicate the standard deviation of the noise. Gradient delays were estimated by fitting the phase ramp.
 
 ![](figures/Figure3.png)
 
-Figure 3 (A - B) Frequency spectrums of typical spiral and EPI readout gradients, the dashed lines show the frequency threshold of 99% of total power deposition. (C-E)  Measured GIRF on Gx, Gy and Gz for two measurement in the 8-month period, together with their difference. Two frequency ranges (-3.2 – 3.2 kHz shown as green, and -14.6 – 14.6 kHz shown as orange) are chosen and the maximum relative differences in these ranges of GIRF are shown.
+**Figure 3** (A - B) Frequency spectrums of typical spiral and EPI readout gradients, the dashed lines show the frequency threshold of 99% of total power deposition. (C-E)  Measured GIRF on Gx, Gy and Gz for two measurement in the 8-month period, together with their difference. Two frequency ranges (-3.2 – 3.2 kHz shown as green, and -14.6 – 14.6 kHz shown as orange) are chosen and the maximum relative differences in these ranges of GIRF are shown.
 
 ![](figures/Figure4.png)
 
-Figure 4 Top row: GIRF before and after protocol optimization and their differences. Bottom row: The SNR before and after protocol optimization. The improvements of the peak SNR and the averaged SNR are listed in each subfigure, using the ratios of SNR between two methods.
+**Figure 4** Top row: GIRF before and after protocol optimization and their differences. Bottom row: The SNR before and after protocol optimization. The improvements of the peak SNR and the averaged SNR are listed in each subfigure, using the ratios of SNR between two methods.
 
 ![](figures/Figure5.png)
 
-Figure 5 EPI and Spiral trajectories (whose frequency spectrums are shown in Figure 3A and 3B) before and after correction using GIRFs in long-term and protocol optimized studies. A and B: Zoomed-in EPI trajectories; C and D: Zoomed-in spiral trajectories. All trajectories are in unit of rad/m.
+**Figure 5** EPI and Spiral trajectories (whose frequency spectrums are shown in Figure 3A and 3B) before and after correction using GIRFs in long-term and protocol optimized studies. A and B: Zoomed-in EPI trajectories; C and D: Zoomed-in spiral trajectories. All trajectories are in unit of rad/m.
 
 ## Execution Efficiency and Required Resources
 
