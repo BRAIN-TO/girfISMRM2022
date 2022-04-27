@@ -2,7 +2,7 @@
 
 # Demonstration Code for Gradient Impulse Response Function (GIRF) Calculation and Analysis
 
-This is the demonstration code of the abstract *MR Gradient System Long-Term Stability Investigation and Protocol Optimization for Quality Control using Gradient Impulse Response Function (GIRF)* for the Joint Annual Meeting ISMRM-ESMRMB & ISMRT 31st Annual Meeting, which will be held in London UK, between May 7 - 12, 2022. The program number and the link will be added once it is announced.
+This is the demonstration code of the abstract *MR Gradient System Long-Term Stability Investigation and Protocol Optimization for Quality Control using Gradient Impulse Response Function (GIRF)* by *Zhe Wu, Alexander Jaffray, Johanna Vannesjo, Kamil Uludag, and Lars Kasper* for the Joint Annual Meeting ISMRM-ESMRMB & ISMRT 31st Annual Meeting, which will be held in London UK, between May 7 - 12, 2022. The full information of this abstract can be found in [references](#references), and the PDF version of the published abstract can be found [here](./docs/PublishedAbstract.pdf).
 
 > Copyright (C) 2021-2022  
 > Zhe "Tim" Wu  
@@ -91,6 +91,9 @@ Execution time (all scripts through `main.m`): < 10 seconds.
 Peak RAM capacities needed: < 3GB.
 
 ## References
+
+**The Corresponding ISMRM 2022 Abstract to This Repository**
+Wu, Z., Jaffray, A., Vannesjo, S.J., Uludag, K., Kasper, L., 2022. MR System Stability and Quality Control using Gradient Impulse Response Functions (GIRF). Proc. Intl. Soc. Mag. Reson. Med. 30, 0641. 
 
 **Gradient system characterization**
 Vannesjo, S.J., Haeberlin, M., Kasper, L., Pavan, M., Wilm, B.J., Barmet, C., Pruessmann, K.P., 2013. Gradient system characterization by impulse response measurements with a dynamic field camera. Magn Reson Med 69, 583–593. https://doi.org/10.1002/mrm.24263
